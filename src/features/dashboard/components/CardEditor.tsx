@@ -133,18 +133,16 @@ export function CardEditor({ profile }: CardEditorProps) {
     }))
 
     // Shift remaining resources up
-    const newFormData = { ...formData }
+    const newFormData: Record<string, unknown> = { ...formData }
     for (let i = num; i < visibleResources; i++) {
-      const nextTitle = formData[`resource_title_${i + 1}` as keyof typeof formData] as string
-      const nextUrl = formData[`resource_url_${i + 1}` as keyof typeof formData] as string
-      newFormData[`resource_title_${i}` as keyof typeof newFormData] = nextTitle
-      newFormData[`resource_url_${i}` as keyof typeof newFormData] = nextUrl
+      newFormData[`resource_title_${i}`] = formData[`resource_title_${i + 1}` as keyof typeof formData] as string
+      newFormData[`resource_url_${i}`] = formData[`resource_url_${i + 1}` as keyof typeof formData] as string
     }
     // Clear the last visible one
-    newFormData[`resource_title_${visibleResources}` as keyof typeof newFormData] = ''
-    newFormData[`resource_url_${visibleResources}` as keyof typeof newFormData] = ''
+    newFormData[`resource_title_${visibleResources}`] = ''
+    newFormData[`resource_url_${visibleResources}`] = ''
 
-    setFormData(newFormData)
+    setFormData(newFormData as typeof formData)
     setVisibleResources(Math.max(DEFAULT_RESOURCES, visibleResources - 1))
   }
 
