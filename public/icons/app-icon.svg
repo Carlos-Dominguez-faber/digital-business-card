@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050505"/>
+      <stop offset="100%" style="stop-color:#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="108" fill="url(#bgGrad)"/>
+
+  <!-- Subtle ambient glow -->
+  <circle cx="380" cy="100" r="120" fill="#f59e0b" opacity="0.06" filter="url(#glow)"/>
+  <circle cx="130" cy="400" r="100" fill="#d97706" opacity="0.04" filter="url(#glow)"/>
+
+  <!-- Monogram: CD -->
+  <text x="256" y="290" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="200" fill="url(#accentGrad)" opacity="0.95">CD</text>
+
+  <!-- Subtle divider line -->
+  <rect x="156" y="320" width="200" height="2" rx="1" fill="#f59e0b" opacity="0.3"/>
+
+  <!-- Tagline -->
+  <text x="256" y="365" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="36" fill="rgba(255,255,255,0.5)" letter-spacing="6">TARJETA</text>
+</svg>

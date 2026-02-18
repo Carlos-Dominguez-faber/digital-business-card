@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Digital Business Card
+ * Design: Noir Editorial — deep black, warm amber, Outfit typeface
+ */
+
+:root {
+  --bg-base: #050505;
+  --bg-surface: rgba(255, 255, 255, 0.05);
+  --bg-surface-hover: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --accent: #f59e0b;
+  --accent-dim: rgba(245, 158, 11, 0.15);
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.40);
+  --text-faint: rgba(255, 255, 255, 0.20);
+}
+
+@layer base {
+  body {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg-base);
+    color: var(--text-primary);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Blob animations */
+@keyframes blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(15px, -25px) scale(1.04); }
+  66% { transform: translate(-12px, 18px) scale(0.96); }
+}
+
+.animate-blob { animation: blob-float 25s ease-in-out infinite; }
+.animate-blob-delay-2 { animation: blob-float 30s ease-in-out infinite; animation-delay: -8s; }
+.animate-blob-delay-4 { animation: blob-float 35s ease-in-out infinite; animation-delay: -16s; }
+
+/* Entrance animation */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up { animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-up-1 { animation-delay: 0.06s; }
+.animate-fade-up-2 { animation-delay: 0.12s; }
+.animate-fade-up-3 { animation-delay: 0.18s; }
+.animate-fade-up-4 { animation-delay: 0.24s; }
+.animate-fade-up-5 { animation-delay: 0.30s; }
+
+/* Modal */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in { animation: fade-in 0.3s ease-out; }
+
+/* Accent shimmer line */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.accent-shimmer {
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Subtle noise overlay */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glass glow on hover */
+@keyframes glass-glow {
+  0%, 100% { box-shadow: 0 0 30px rgba(245, 158, 11, 0.03); }
+  50% { box-shadow: 0 0 50px rgba(245, 158, 11, 0.07); }
+}
+.glass-hover:hover { animation: glass-glow 3s ease-in-out infinite; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* iOS */
+@supports (-webkit-touch-callout: none) {
+  button { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; user-select: none; }
+  input, select, textarea, button { font-size: 16px; }
+}
+
+input:focus, select:focus, textarea:focus { outline: none; }
+body.modal-open { overflow: hidden; }
+
+.safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
+.pb-safe { padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0)); }
+@supports (padding: max(0px)) {
+  body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+}
