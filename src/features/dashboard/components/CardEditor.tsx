@@ -576,7 +576,7 @@ export function CardEditor({ profile }: CardEditorProps) {
                   id={`resource_title_${num}`}
                   name={`resource_title_${num}`}
                   type="text"
-                  value={formData[`resource_title_${num}` as keyof typeof formData]}
+                  value={formData[`resource_title_${num}` as keyof typeof formData] as string}
                   onChange={handleChange}
                   placeholder={`ej., Mi Portafolio`}
                   className={inputClasses}
@@ -593,7 +593,7 @@ export function CardEditor({ profile }: CardEditorProps) {
                   id={`resource_url_${num}`}
                   name={`resource_url_${num}`}
                   type="url"
-                  value={formData[`resource_url_${num}` as keyof typeof formData]}
+                  value={formData[`resource_url_${num}` as keyof typeof formData] as string}
                   onChange={handleChange}
                   placeholder="https://..."
                   className={inputClasses}
